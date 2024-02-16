@@ -8,6 +8,20 @@ router.post("/", async (req, res) => {
         const dataa = req.body.question;
         const data = JSON.parse(dataa);
 
+        // Check if a transaction with the same data already exists
+        const existingTransaction = await TransactionDb.findOne({
+            uid: data.uid,
+            type: data.type,
+            category: data.category,
+            amount: data.amount,
+            description: data.description
+        });
+
+        // If a matching transaction is found, return a response indicating it already exists
+        if (existingTransaction) {
+            return res.status(400).json({ message: "Transaction already exists", status: false });
+        }
+
         // Create a new instance of TransactionDb model with the extracted data
         const newTransaction = new TransactionDb({
             uid: data.uid,
