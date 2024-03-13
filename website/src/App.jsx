@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import HomePage from './components/homepage'
-import Textgen from './components/textgen'
+import HomePage from './components/HomePage'
+import Textgen from './components/Textgen'
 import BudgetAnalyzer from './components/BudgetAnalyzer'
 import ExpenseManager from './components/ExpenseManager'
 
